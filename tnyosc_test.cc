@@ -1,4 +1,4 @@
-#include "tnyosc++.h"
+#include "tnyosc.hpp"
 #include <cstdlib>
 #include <assert.h>
 
