@@ -24,14 +24,14 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-/// tnyosc++.h
-///
+/// @file tnyosc.hpp
+/// @brief tnyosc main (and only) header file
 /// @author Toshiro Yamada
-///
-/// @file The main (and only) tnyosc++ file for creating Open Sound Control
-/// 1.0 and 1.1 Specification compliant messages. tnyosc++ provides simple
-/// and clean C++ API.
-///
+/// 
+/// tnyosc is a header-only Open Sound Control library written in C++ for 
+/// creating OSC-compliant messages. tnyosc supports Open Sound Control 1.0 and
+/// 1.1 types and other nonstandard types, and bundles. Note that tnyosc does not 
+/// include code to actually send or receive OSC messages.
 #ifndef __TNY_OSC__
 #define __TNY_OSC__
 
