@@ -63,7 +63,7 @@ Here's a complete example using boost::asio to send a OSC message over UDP:
       return 0;
     }
 
-A similar example is inside tnyosc\_net\_tesc\_.cc.
+A similar example is inside tnyosc\_net\_test.cc.
 
 ## BSD-License
 
