@@ -1,0 +1,96 @@
+\hypertarget{tnyosc_8hpp}{
+\section{tnyosc.hpp File Reference}
+\label{tnyosc_8hpp}\index{tnyosc.hpp@{tnyosc.hpp}}
+}
+
+
+tnyosc main (and only) header file  
+
+
+{\ttfamily \#include $<$sys/time.h$>$}\par
+{\ttfamily \#include $<$arpa/inet.h$>$}\par
+{\ttfamily \#include $<$cstddef$>$}\par
+{\ttfamily \#include $<$string$>$}\par
+{\ttfamily \#include $<$vector$>$}\par
+{\ttfamily \#include $<$algorithm$>$}\par
+{\ttfamily \#include $<$iostream$>$}\par
+{\ttfamily \#include $<$inttypes.h$>$}\par
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classtnyosc_1_1_message}{tnyosc::Message}
+\item 
+class \hyperlink{classtnyosc_1_1_bundle}{tnyosc::Bundle}
+\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{tnyosc_8hpp_a3cfcf123d4ead264289232f91f2c9ca5}{ntohll}(x)
+\begin{DoxyCompactList}\small\item\em Convert 64-\/bit little-\/endian integer to a big-\/endian network format. \end{DoxyCompactList}\item 
+\hypertarget{tnyosc_8hpp_a9f4bf0773c45ad9a9753a1b784a13fbb}{
+\#define \hyperlink{tnyosc_8hpp_a9f4bf0773c45ad9a9753a1b784a13fbb}{htonll}(x)~ntohll(x)}
+\label{tnyosc_8hpp_a9f4bf0773c45ad9a9753a1b784a13fbb}
+
+\begin{DoxyCompactList}\small\item\em Convert 64-\/bit big-\/endian network format to a little-\/endian integer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{namespacetnyosc_a116950081bc009f915bb3373356abbe3}{
+typedef std::vector$<$ unsigned char $>$ \hyperlink{namespacetnyosc_a116950081bc009f915bb3373356abbe3}{tnyosc::ByteArray}}
+\label{namespacetnyosc_a116950081bc009f915bb3373356abbe3}
+
+\begin{DoxyCompactList}\small\item\em A byte array type internally used in the tnyosc library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{namespacetnyosc_ae97db9399ea5f368ce35eccfdd973839}{
+int32\_\-t \hyperlink{namespacetnyosc_ae97db9399ea5f368ce35eccfdd973839}{tnyosc::htonf} (float x)}
+\label{namespacetnyosc_ae97db9399ea5f368ce35eccfdd973839}
+
+\begin{DoxyCompactList}\small\item\em Convert 32-\/bit float to a big-\/endian network format. \end{DoxyCompactList}\item 
+\hypertarget{namespacetnyosc_a518088812da6482f64408ddf8c6aeaca}{
+int64\_\-t \hyperlink{namespacetnyosc_a518088812da6482f64408ddf8c6aeaca}{tnyosc::htond} (double x)}
+\label{namespacetnyosc_a518088812da6482f64408ddf8c6aeaca}
+
+\begin{DoxyCompactList}\small\item\em Convert 64-\/bit float (double) to a big-\/endian network format. \end{DoxyCompactList}\item 
+\hypertarget{namespacetnyosc_a59992cd0ce1b8c8a1347650a19eb132b}{
+double \hyperlink{namespacetnyosc_a59992cd0ce1b8c8a1347650a19eb132b}{tnyosc::ntohf} (int32\_\-t x)}
+\label{namespacetnyosc_a59992cd0ce1b8c8a1347650a19eb132b}
+
+\begin{DoxyCompactList}\small\item\em Convert 32-\/bit big-\/endian network format to float. \end{DoxyCompactList}\item 
+\hypertarget{namespacetnyosc_a1057ce2e8aba3879f37c9802b1df71a0}{
+double \hyperlink{namespacetnyosc_a1057ce2e8aba3879f37c9802b1df71a0}{tnyosc::ntohd} (int64\_\-t x)}
+\label{namespacetnyosc_a1057ce2e8aba3879f37c9802b1df71a0}
+
+\begin{DoxyCompactList}\small\item\em Convert 64-\/bit big-\/endian network format to double. \end{DoxyCompactList}\item 
+const unsigned char $\ast$ \hyperlink{namespacetnyosc_ac90f34c48a37b1200b4e989d38c30b11}{tnyosc::get\_\-pointer} (const ByteArray \&array)
+\item 
+uint64\_\-t \hyperlink{namespacetnyosc_a18579b1675837c5dc683234f13ac1a90}{tnyosc::get\_\-current\_\-ntp\_\-time} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+tnyosc main (and only) header file \begin{DoxyAuthor}{Author}
+Toshiro Yamada
+\end{DoxyAuthor}
+tnyosc is a header-\/only Open Sound Control library written in C++ for creating OSC-\/compliant messages. tnyosc supports Open Sound Control 1.0 and 1.1 types and other nonstandard types, and bundles. Note that tnyosc does not include code to actually send or receive OSC messages. 
+
+\subsection{Define Documentation}
+\hypertarget{tnyosc_8hpp_a3cfcf123d4ead264289232f91f2c9ca5}{
+\index{tnyosc.hpp@{tnyosc.hpp}!ntohll@{ntohll}}
+\index{ntohll@{ntohll}!tnyosc.hpp@{tnyosc.hpp}}
+\subsubsection[{ntohll}]{\setlength{\rightskip}{0pt plus 5cm}\#define ntohll(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)}}
+\label{tnyosc_8hpp_a3cfcf123d4ead264289232f91f2c9ca5}
+{\bfseries Value:}
+\begin{DoxyCode}
+(((int64_t)(ntohl((int32_t)((x << 32) >> 32))) << 32) | \
+  (uint32_t)ntohl(((int32_t)(x >> 32))))
+\end{DoxyCode}
+
+
+Convert 64-\/bit little-\/endian integer to a big-\/endian network format. 
+

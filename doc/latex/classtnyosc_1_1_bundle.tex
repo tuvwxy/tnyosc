@@ -1,0 +1,174 @@
+\hypertarget{classtnyosc_1_1_bundle}{
+\section{tnyosc::Bundle Class Reference}
+\label{classtnyosc_1_1_bundle}\index{tnyosc::Bundle@{tnyosc::Bundle}}
+}
+
+
+{\ttfamily \#include $<$tnyosc.hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtnyosc_1_1_bundle_a7075e725afb3941ed1af164d4f4f656f}{Bundle} ()
+\item 
+void \hyperlink{classtnyosc_1_1_bundle_aecc352135263bd0c1984818d342c09b5}{set\_\-timetag} (uint64\_\-t ntp\_\-time)
+\item 
+const ByteArray \& \hyperlink{classtnyosc_1_1_bundle_a115f4db940bb1a04cd9a2c60fdaa039f}{byte\_\-array} () const 
+\item 
+const unsigned char $\ast$ \hyperlink{classtnyosc_1_1_bundle_a1df649f2cd0748a7159ea3081dae42b2}{data} () const 
+\item 
+size\_\-t \hyperlink{classtnyosc_1_1_bundle_ae172d6cdb7440822f84291c8b96fb00d}{size} () const 
+\item 
+\hypertarget{classtnyosc_1_1_bundle_a58ad8eb671f250bc3fa524007f741254}{
+void \hyperlink{classtnyosc_1_1_bundle_a58ad8eb671f250bc3fa524007f741254}{clear} ()}
+\label{classtnyosc_1_1_bundle_a58ad8eb671f250bc3fa524007f741254}
+
+\begin{DoxyCompactList}\small\item\em Clears the bundle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\paragraph*{Functions for adding Message or Bundle.}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classtnyosc_1_1_bundle_a332d2dae00a991280864834cddc9d0f0}{append} (const \hyperlink{classtnyosc_1_1_message}{Message} $\ast$message)
+\item 
+void \hyperlink{classtnyosc_1_1_bundle_a205a5cc78f1abe251924181ec30411e6}{append} (const \hyperlink{classtnyosc_1_1_bundle}{Bundle} $\ast$bundle)
+\item 
+\hypertarget{classtnyosc_1_1_bundle_a8c27d0978c0c033689ea1e00be1db51f}{
+void {\bfseries append} (const \hyperlink{classtnyosc_1_1_message}{Message} \&message)}
+\label{classtnyosc_1_1_bundle_a8c27d0978c0c033689ea1e00be1db51f}
+
+\item 
+\hypertarget{classtnyosc_1_1_bundle_af189fcf14ac84cbf21d04d5a04fc3b51}{
+void {\bfseries append} (const \hyperlink{classtnyosc_1_1_bundle}{Bundle} \&bundle)}
+\label{classtnyosc_1_1_bundle_af189fcf14ac84cbf21d04d5a04fc3b51}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+This class represents an Open Sound Control bundle message. A bundle can contain any number of \hyperlink{classtnyosc_1_1_message}{Message} and \hyperlink{classtnyosc_1_1_bundle}{Bundle}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classtnyosc_1_1_bundle_a7075e725afb3941ed1af164d4f4f656f}{
+\index{tnyosc::Bundle@{tnyosc::Bundle}!Bundle@{Bundle}}
+\index{Bundle@{Bundle}!tnyosc::Bundle@{tnyosc::Bundle}}
+\subsubsection[{Bundle}]{\setlength{\rightskip}{0pt plus 5cm}tnyosc::Bundle::Bundle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classtnyosc_1_1_bundle_a7075e725afb3941ed1af164d4f4f656f}
+Creates a OSC bundle with timestamp set to immediate. Call set\_\-timetag to set a custom timestamp. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classtnyosc_1_1_bundle_a332d2dae00a991280864834cddc9d0f0}{
+\index{tnyosc::Bundle@{tnyosc::Bundle}!append@{append}}
+\index{append@{append}!tnyosc::Bundle@{tnyosc::Bundle}}
+\subsubsection[{append}]{\setlength{\rightskip}{0pt plus 5cm}void tnyosc::Bundle::append (
+\begin{DoxyParamCaption}
+\item[{const {\bf Message} $\ast$}]{message}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classtnyosc_1_1_bundle_a332d2dae00a991280864834cddc9d0f0}
+Appends an OSC message to this bundle. The message is immediately copied into this bundle and any changes to the message after the call to this function does not affect this bundle.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em message} & A pointer to \hyperlink{classtnyosc_1_1_message}{tnyosc::Message}. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classtnyosc_1_1_bundle_a205a5cc78f1abe251924181ec30411e6}{
+\index{tnyosc::Bundle@{tnyosc::Bundle}!append@{append}}
+\index{append@{append}!tnyosc::Bundle@{tnyosc::Bundle}}
+\subsubsection[{append}]{\setlength{\rightskip}{0pt plus 5cm}void tnyosc::Bundle::append (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bundle} $\ast$}]{bundle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classtnyosc_1_1_bundle_a205a5cc78f1abe251924181ec30411e6}
+Appends an OSC bundle to this bundle. The bundle may include any number of messages or bundles and are immediately copied into this bundle. Any changes to the bundle \hypertarget{classtnyosc_1_1_bundle_a115f4db940bb1a04cd9a2c60fdaa039f}{
+\index{tnyosc::Bundle@{tnyosc::Bundle}!byte\_\-array@{byte\_\-array}}
+\index{byte\_\-array@{byte\_\-array}!tnyosc::Bundle@{tnyosc::Bundle}}
+\subsubsection[{byte\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}const ByteArray\& tnyosc::Bundle::byte\_\-array (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classtnyosc_1_1_bundle_a115f4db940bb1a04cd9a2c60fdaa039f}
+Returns a complete byte array of this OSC bundle as a tnyosc::ByteArray type.
+
+\begin{DoxyReturn}{Returns}
+The OSC bundle as a tnyosc::ByteArray. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classtnyosc_1_1_bundle_a1df649f2cd0748a7159ea3081dae42b2}{data} 
+
+\hyperlink{classtnyosc_1_1_bundle_ae172d6cdb7440822f84291c8b96fb00d}{size} 
+\end{DoxySeeAlso}
+\hypertarget{classtnyosc_1_1_bundle_a1df649f2cd0748a7159ea3081dae42b2}{
+\index{tnyosc::Bundle@{tnyosc::Bundle}!data@{data}}
+\index{data@{data}!tnyosc::Bundle@{tnyosc::Bundle}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char$\ast$ tnyosc::Bundle::data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classtnyosc_1_1_bundle_a1df649f2cd0748a7159ea3081dae42b2}
+Returns a pointer to the byte array of this OSC bundle. This call is convenient for actually sending this OSC bundle.
+
+\begin{DoxyReturn}{Returns}
+The OSC bundle as an unsigned char$\ast$. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classtnyosc_1_1_bundle_a115f4db940bb1a04cd9a2c60fdaa039f}{byte\_\-array} 
+
+\hyperlink{classtnyosc_1_1_bundle_ae172d6cdb7440822f84291c8b96fb00d}{size}
+\end{DoxySeeAlso}
+
+\begin{DoxyPre}
+        int sockfd; // initialize UDP socket... 
+        \hyperlink{classtnyosc_1_1_bundle}{tnyosc::Bundle}* bundle; // create a OSC bundle...
+        send\_to(sockfd, bundle->\hyperlink{classtnyosc_1_1_bundle_a1df649f2cd0748a7159ea3081dae42b2}{data()}, bundle->\hyperlink{classtnyosc_1_1_bundle_ae172d6cdb7440822f84291c8b96fb00d}{size()}, 0);
+      \end{DoxyPre}
+ \hypertarget{classtnyosc_1_1_bundle_aecc352135263bd0c1984818d342c09b5}{
+\index{tnyosc::Bundle@{tnyosc::Bundle}!set\_\-timetag@{set\_\-timetag}}
+\index{set\_\-timetag@{set\_\-timetag}!tnyosc::Bundle@{tnyosc::Bundle}}
+\subsubsection[{set\_\-timetag}]{\setlength{\rightskip}{0pt plus 5cm}void tnyosc::Bundle::set\_\-timetag (
+\begin{DoxyParamCaption}
+\item[{uint64\_\-t}]{ntp\_\-time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classtnyosc_1_1_bundle_aecc352135263bd0c1984818d342c09b5}
+Sets timestamp of the bundle.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ntp\_\-time} & NTP Timestamp \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+get\_\-current\_\-ntp\_\-time 
+\end{DoxySeeAlso}
+\hypertarget{classtnyosc_1_1_bundle_ae172d6cdb7440822f84291c8b96fb00d}{
+\index{tnyosc::Bundle@{tnyosc::Bundle}!size@{size}}
+\index{size@{size}!tnyosc::Bundle@{tnyosc::Bundle}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t tnyosc::Bundle::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classtnyosc_1_1_bundle_ae172d6cdb7440822f84291c8b96fb00d}
+Returns the size of this OSC bundle.
+
+\begin{DoxyReturn}{Returns}
+Size of the OSC bundle in bytes. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classtnyosc_1_1_bundle_a115f4db940bb1a04cd9a2c60fdaa039f}{byte\_\-array} 
+
+\hyperlink{classtnyosc_1_1_bundle_a1df649f2cd0748a7159ea3081dae42b2}{data} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{tnyosc_8hpp}{tnyosc.hpp}\end{DoxyCompactItemize}

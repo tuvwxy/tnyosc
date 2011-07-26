@@ -1,0 +1,250 @@
+\hypertarget{classtnyosc_1_1_message}{
+\section{tnyosc::Message Class Reference}
+\label{classtnyosc_1_1_message}\index{tnyosc::Message@{tnyosc::Message}}
+}
+
+
+{\ttfamily \#include $<$tnyosc.hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtnyosc_1_1_message_ac88e868ab5c1f59193c1d2cef1679e16}{Message} (const std::string \&address=\char`\"{}/tnyosc\char`\"{})
+\item 
+\hyperlink{classtnyosc_1_1_message_ae17d6dd92a0da1ac47996501f887ae6e}{Message} (const char $\ast$address)
+\item 
+void \hyperlink{classtnyosc_1_1_message_aa7ce6c220f685e5ad0402fecdb4403d4}{set\_\-address} (const std::string \&address)
+\item 
+void \hyperlink{classtnyosc_1_1_message_a38183562956c663f825b71cf2563a41a}{set\_\-address} (const char $\ast$address)
+\item 
+\hypertarget{classtnyosc_1_1_message_ad2ea4fa41da0ece7d1c218b88a6ee69e}{
+const std::string \& \hyperlink{classtnyosc_1_1_message_ad2ea4fa41da0ece7d1c218b88a6ee69e}{address} () const }
+\label{classtnyosc_1_1_message_ad2ea4fa41da0ece7d1c218b88a6ee69e}
+
+\begin{DoxyCompactList}\small\item\em Returns the OSC address of this message. \end{DoxyCompactList}\item 
+const ByteArray \& \hyperlink{classtnyosc_1_1_message_afd10bfa0c1e18f7b0ea10072acbb6618}{byte\_\-array} () const 
+\item 
+const unsigned char $\ast$ \hyperlink{classtnyosc_1_1_message_aa0ccc0dcd1bde1a59b9260f78c68ec1c}{data} () const 
+\item 
+size\_\-t \hyperlink{classtnyosc_1_1_message_ad146e1b298d0a8ff5fcc7f8234af5806}{size} () const 
+\item 
+\hypertarget{classtnyosc_1_1_message_ace39585edd14ff52ec60f25101bcfc71}{
+void \hyperlink{classtnyosc_1_1_message_ace39585edd14ff52ec60f25101bcfc71}{clear} ()}
+\label{classtnyosc_1_1_message_ace39585edd14ff52ec60f25101bcfc71}
+
+\begin{DoxyCompactList}\small\item\em Clears the message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\paragraph*{Functions for adding OSC 1.0 types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classtnyosc_1_1_message_ab12726122ccf535f65022ff6f88dd838}{
+void {\bfseries append} (int32\_\-t v)}
+\label{classtnyosc_1_1_message_ab12726122ccf535f65022ff6f88dd838}
+
+\item 
+\hypertarget{classtnyosc_1_1_message_a2a1d45d1e2877dc69fd4ec162ecad237}{
+void {\bfseries append} (float v)}
+\label{classtnyosc_1_1_message_a2a1d45d1e2877dc69fd4ec162ecad237}
+
+\item 
+\hypertarget{classtnyosc_1_1_message_ad66a2b9af7da82725f0a0ceb6969e18a}{
+void {\bfseries append} (const std::string \&v)}
+\label{classtnyosc_1_1_message_ad66a2b9af7da82725f0a0ceb6969e18a}
+
+\item 
+\hypertarget{classtnyosc_1_1_message_a74da2a0e90e0485551a678d401d0f756}{
+void {\bfseries append\_\-cstring} (const char $\ast$v, size\_\-t len)}
+\label{classtnyosc_1_1_message_a74da2a0e90e0485551a678d401d0f756}
+
+\item 
+\hypertarget{classtnyosc_1_1_message_a94cdec76e625fd4a8f11c250b16a3021}{
+void {\bfseries append\_\-blob} (void $\ast$blob, uint32\_\-t size)}
+\label{classtnyosc_1_1_message_a94cdec76e625fd4a8f11c250b16a3021}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\paragraph*{Functions for adding OSC 1.1 types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classtnyosc_1_1_message_ac9a236c7448f943336fdcd3d9ebc576a}{
+void {\bfseries append\_\-time} (uint64\_\-t v)}
+\label{classtnyosc_1_1_message_ac9a236c7448f943336fdcd3d9ebc576a}
+
+\item 
+\hypertarget{classtnyosc_1_1_message_a8695434364583e24ca146a57f061887f}{
+void {\bfseries append\_\-current\_\-time} ()}
+\label{classtnyosc_1_1_message_a8695434364583e24ca146a57f061887f}
+
+\item 
+\hypertarget{classtnyosc_1_1_message_a94b1ad3271cd739a46841842edbc01bf}{
+void {\bfseries append\_\-true} ()}
+\label{classtnyosc_1_1_message_a94b1ad3271cd739a46841842edbc01bf}
+
+\item 
+\hypertarget{classtnyosc_1_1_message_a931f270eda78ee387ce4113a278c332e}{
+void {\bfseries append\_\-false} ()}
+\label{classtnyosc_1_1_message_a931f270eda78ee387ce4113a278c332e}
+
+\item 
+\hypertarget{classtnyosc_1_1_message_a1f8fce2c36c6dfd71dbe1a4be98808f5}{
+void {\bfseries append\_\-null} ()}
+\label{classtnyosc_1_1_message_a1f8fce2c36c6dfd71dbe1a4be98808f5}
+
+\item 
+\hypertarget{classtnyosc_1_1_message_a537913b8fe3afdd10400d6f293b05ee3}{
+void {\bfseries append\_\-impulse} ()}
+\label{classtnyosc_1_1_message_a537913b8fe3afdd10400d6f293b05ee3}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\paragraph*{Functions for adding nonstandard types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classtnyosc_1_1_message_a344fd2f6ce98f1f1cf54550935d4f243}{
+void {\bfseries append} (int64\_\-t v)}
+\label{classtnyosc_1_1_message_a344fd2f6ce98f1f1cf54550935d4f243}
+
+\item 
+\hypertarget{classtnyosc_1_1_message_ad27ee1707ed53c12f68ee240922f3f38}{
+void {\bfseries append} (double v)}
+\label{classtnyosc_1_1_message_ad27ee1707ed53c12f68ee240922f3f38}
+
+\item 
+\hypertarget{classtnyosc_1_1_message_acc66286a734cc729c2e1e6e6fc7fe627}{
+void {\bfseries append} (char v)}
+\label{classtnyosc_1_1_message_acc66286a734cc729c2e1e6e6fc7fe627}
+
+\item 
+\hypertarget{classtnyosc_1_1_message_a192950fd01f9eb3d991d70b1720da61b}{
+void {\bfseries append\_\-midi} (uint8\_\-t port, uint8\_\-t status, uint8\_\-t data1, uint8\_\-t data2)}
+\label{classtnyosc_1_1_message_a192950fd01f9eb3d991d70b1720da61b}
+
+\item 
+\hypertarget{classtnyosc_1_1_message_aaa23ef199fcdf34016aeb98ec08a5d56}{
+void {\bfseries append\_\-array} (void $\ast$array, size\_\-t size)}
+\label{classtnyosc_1_1_message_aaa23ef199fcdf34016aeb98ec08a5d56}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+This class represents an Open Sound Control message. It supports Open Sound Control 1.0 and 1.1 specifications and extra non-\/standard arguments listed in \href{http://opensoundcontrol.org/spec-1_0.}{\tt http://opensoundcontrol.org/spec-\/1\_\-0.} 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classtnyosc_1_1_message_ac88e868ab5c1f59193c1d2cef1679e16}{
+\index{tnyosc::Message@{tnyosc::Message}!Message@{Message}}
+\index{Message@{Message}!tnyosc::Message@{tnyosc::Message}}
+\subsubsection[{Message}]{\setlength{\rightskip}{0pt plus 5cm}tnyosc::Message::Message (
+\begin{DoxyParamCaption}
+\item[{const std::string \&}]{address = {\ttfamily \char`\"{}/tnyosc\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, explicit\mbox{]}}}}
+\label{classtnyosc_1_1_message_ac88e868ab5c1f59193c1d2cef1679e16}
+Create an OSC message. If address is not given, default OSC address is set to \char`\"{}/tnyosc\char`\"{}. \hypertarget{classtnyosc_1_1_message_ae17d6dd92a0da1ac47996501f887ae6e}{
+\index{tnyosc::Message@{tnyosc::Message}!Message@{Message}}
+\index{Message@{Message}!tnyosc::Message@{tnyosc::Message}}
+\subsubsection[{Message}]{\setlength{\rightskip}{0pt plus 5cm}tnyosc::Message::Message (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{address}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, explicit\mbox{]}}}}
+\label{classtnyosc_1_1_message_ae17d6dd92a0da1ac47996501f887ae6e}
+Create an OSC message. This function is called if \hyperlink{classtnyosc_1_1_message}{Message} is created with a C string. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classtnyosc_1_1_message_afd10bfa0c1e18f7b0ea10072acbb6618}{
+\index{tnyosc::Message@{tnyosc::Message}!byte\_\-array@{byte\_\-array}}
+\index{byte\_\-array@{byte\_\-array}!tnyosc::Message@{tnyosc::Message}}
+\subsubsection[{byte\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}const ByteArray\& tnyosc::Message::byte\_\-array (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classtnyosc_1_1_message_afd10bfa0c1e18f7b0ea10072acbb6618}
+Returns a complete byte array of this OSC message as a ByteArray type. The byte array is constructed lazily and is cached until the cache is obsolete. Call to $|$data$|$ and $|$size$|$ perform the same caching.
+
+\begin{DoxyReturn}{Returns}
+The OSC message as a ByteArray. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classtnyosc_1_1_message_aa0ccc0dcd1bde1a59b9260f78c68ec1c}{data} 
+
+\hyperlink{classtnyosc_1_1_message_ad146e1b298d0a8ff5fcc7f8234af5806}{size} 
+\end{DoxySeeAlso}
+\hypertarget{classtnyosc_1_1_message_aa0ccc0dcd1bde1a59b9260f78c68ec1c}{
+\index{tnyosc::Message@{tnyosc::Message}!data@{data}}
+\index{data@{data}!tnyosc::Message@{tnyosc::Message}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char$\ast$ tnyosc::Message::data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classtnyosc_1_1_message_aa0ccc0dcd1bde1a59b9260f78c68ec1c}
+Returns a complete byte array of this OSC message as a unsigned char pointer. This call is convenient for actually sending this OSC messager.
+
+\begin{DoxyReturn}{Returns}
+The OSC message as an unsigned char$\ast$. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classtnyosc_1_1_message_afd10bfa0c1e18f7b0ea10072acbb6618}{byte\_\-array} 
+
+\hyperlink{classtnyosc_1_1_message_ad146e1b298d0a8ff5fcc7f8234af5806}{size}
+\end{DoxySeeAlso}
+
+\begin{DoxyPre}
+        int sockfd; // initialize a socket...
+        \hyperlink{classtnyosc_1_1_message}{tnyosc::Message}* msg; // create a OSC message...
+        send\_to(sockfd, msg->\hyperlink{classtnyosc_1_1_message_aa0ccc0dcd1bde1a59b9260f78c68ec1c}{data()}, msg->\hyperlink{classtnyosc_1_1_message_ad146e1b298d0a8ff5fcc7f8234af5806}{size()}, 0);
+      \end{DoxyPre}
+ \hypertarget{classtnyosc_1_1_message_a38183562956c663f825b71cf2563a41a}{
+\index{tnyosc::Message@{tnyosc::Message}!set\_\-address@{set\_\-address}}
+\index{set\_\-address@{set\_\-address}!tnyosc::Message@{tnyosc::Message}}
+\subsubsection[{set\_\-address}]{\setlength{\rightskip}{0pt plus 5cm}void tnyosc::Message::set\_\-address (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{address}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classtnyosc_1_1_message_a38183562956c663f825b71cf2563a41a}
+Sets the OSC address of this message. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em address} & The new OSC address. \\
+\hline
+\end{DoxyParams}
+ \hypertarget{classtnyosc_1_1_message_aa7ce6c220f685e5ad0402fecdb4403d4}{
+\index{tnyosc::Message@{tnyosc::Message}!set\_\-address@{set\_\-address}}
+\index{set\_\-address@{set\_\-address}!tnyosc::Message@{tnyosc::Message}}
+\subsubsection[{set\_\-address}]{\setlength{\rightskip}{0pt plus 5cm}void tnyosc::Message::set\_\-address (
+\begin{DoxyParamCaption}
+\item[{const std::string \&}]{address}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classtnyosc_1_1_message_aa7ce6c220f685e5ad0402fecdb4403d4}
+Sets the OSC address of this message. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em address} & The new OSC address. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classtnyosc_1_1_message_ad146e1b298d0a8ff5fcc7f8234af5806}{
+\index{tnyosc::Message@{tnyosc::Message}!size@{size}}
+\index{size@{size}!tnyosc::Message@{tnyosc::Message}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t tnyosc::Message::size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{classtnyosc_1_1_message_ad146e1b298d0a8ff5fcc7f8234af5806}
+Returns the size of this OSC message.
+
+\begin{DoxyReturn}{Returns}
+Size of the OSC message in bytes. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classtnyosc_1_1_message_afd10bfa0c1e18f7b0ea10072acbb6618}{byte\_\-array} 
+
+\hyperlink{classtnyosc_1_1_message_aa0ccc0dcd1bde1a59b9260f78c68ec1c}{data} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{tnyosc_8hpp}{tnyosc.hpp}\end{DoxyCompactItemize}
