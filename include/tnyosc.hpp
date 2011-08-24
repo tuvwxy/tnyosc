@@ -84,16 +84,17 @@
 #define htonll(x) ntohll(x)
 #endif
 
+
 namespace tnyosc {
 
 /// Convert 32-bit float to a big-endian network format
-int32_t htonf(float x) { return (int32_t)htonl(*(int32_t*)&x); }
+inline int32_t htonf(float x) { return (int32_t)htonl(*(int32_t*)&x); }
 /// Convert 64-bit float (double) to a big-endian network format
-int64_t htond(double x) { return (int64_t)htonll(*(int64_t*)&x); }
+inline int64_t htond(double x) { return (int64_t)htonll(*(int64_t*)&x); }
 /// Convert 32-bit big-endian network format to float
-double ntohf(int32_t x) { x = ntohl(x); return *(float*)&x; }
+inline double ntohf(int32_t x) { x = ntohl(x); return *(float*)&x; }
 /// Convert 64-bit big-endian network format to double
-double ntohd(int64_t x) { return (double)ntohll(x); }
+inline double ntohd(int64_t x) { return (double)ntohll(x); }
 
 /// A byte array type internally used in the tnyosc library.
 typedef std::vector<unsigned char> ByteArray;
@@ -102,7 +103,7 @@ typedef std::vector<unsigned char> ByteArray;
 ///
 /// @param[in] array An array as type ByteArray.
 /// @return A pointer to the buffer as unsigned char*. 
-const unsigned char* get_pointer(const ByteArray& array) 
+inline const unsigned char* get_pointer(const ByteArray& array) 
 { 
   if (array.size() > 0) {
     return &array[0];
@@ -117,7 +118,6 @@ const unsigned char* get_pointer(const ByteArray& array)
 struct timeval {
   time_t tv_sec;  /* seconds since Jan. 1, 1970 */
   int32_t tv_usec; /* and microseconds */
-
 };
 
 struct timezone {
@@ -127,7 +127,7 @@ struct timezone {
 
 /// A windows equivalent function for Unix gettimeofday function.
 /// @
-int gettimeofday(struct timeval *tv, struct timezone *tz)
+inline int gettimeofday(struct timeval *tv, struct timezone *tz)
 {
   FILETIME ft;
   int64_t tmpres = 0;
@@ -169,7 +169,7 @@ int gettimeofday(struct timeval *tv, struct timezone *tz)
 /// Get the current NTP timestamp by calling gettimeofday.
 ///
 /// @ref [http://stackoverflow.com/questions/2641954/create-ntp-time-stamp-from-gettimeofday]
-uint64_t get_current_ntp_time()
+inline uint64_t get_current_ntp_time()
 {
   // time between 1-1-1900 and 1-1-1950
   static const uint64_t epoch = 2208988800UL;
@@ -189,7 +189,7 @@ uint64_t get_current_ntp_time()
 /// Control 1.0 and 1.1 specifications and extra non-standard arguments listed
 /// in http://opensoundcontrol.org/spec-1_0.
 class Message {
-public:
+ public:
 #ifdef TNYOSC_WITH_BOOST
   typedef boost::shared_ptr<Message> Ptr;
 #endif
@@ -371,7 +371,7 @@ public:
     types_.clear();
     data_.clear(); }
 
-private:
+ private:
   std::string address_;
   ByteArray types_;
   ByteArray data_;
@@ -395,14 +395,19 @@ private:
 /// This class represents an Open Sound Control bundle message. A bundle can
 /// contain any number of Message and Bundle. 
 class Bundle {
-public:
+ public:
 #ifdef TNYOSC_WITH_BOOST
   typedef boost::shared_ptr<Bundle> Ptr;
 #endif
 
   /// Creates a OSC bundle with timestamp set to immediate. Call set_timetag to
   /// set a custom timestamp.
-  Bundle() : data_(id.begin(), id.end()) { data_.resize(16); data_[15] = 1; }
+  Bundle() { 
+    static std::string id = "#bundle";
+    data_.resize(16); 
+    std::copy(id.begin(), id.end(), data_.begin());
+    data_[15] = 1; 
+  }
   ~Bundle() {}
 
   // @{
@@ -437,7 +442,7 @@ public:
     uint64_t a = sec << 32 | frac;
     ByteArray b(8); 
     memcpy(&b[0], (char*)&a, 8);
-    data_.insert(data_.begin()+id.size(), b.begin(), b.end()); }
+    data_.insert(data_.begin()+8, b.begin(), b.end()); }
 
   /// Returns a complete byte array of this OSC bundle as a tnyosc::ByteArray 
   /// type. 
@@ -472,8 +477,7 @@ public:
   /// Clears the bundle.
   void clear() { data_.clear(); }
 
-private:
-  static const std::string id; // contains the bundle id "#bundle\0"
+ private:
   ByteArray data_;
 
   void append_data(const ByteArray& data) {
@@ -483,8 +487,6 @@ private:
     std::copy(data.begin(), data.end(), b.begin() + 4);
     data_.insert(data_.end(), b.begin(), b.end()); }
 };
-
-const std::string Bundle::id = "#bundle\0";
 
 } // namespace tnyosc
 
