@@ -12,10 +12,10 @@ void test_method1(const std::string& address,
     const std::vector<tnyosc::Argument>& argv, 
     void* user_data)
 {
-  std::cerr << __PRETTY_FUNCTION__ << ": address = " << address << std::endl;
-  std::cerr << __PRETTY_FUNCTION__ << ": argv.size = " << argv.size() << std::endl;
   CHECK(address.compare(TEST1_ADDRESS) == 0);
-  CHECK(argv.size() == 1);
+  CHECK(argv.size() == 2);
+  CHECK(argv[0].data.i == 1000);
+  CHECK(strcmp(argv[1].data.s, "test") == 0);
   CHECK(user_data == NULL);
 }
 
@@ -24,6 +24,7 @@ TEST(CallMethodTestMessage)
   using namespace tnyosc;
   Message msg("/test1");
   msg.append(1000);
+  msg.append("test");
   Bundle bundle;
   bundle.append(msg);
   bundle.append(msg);
