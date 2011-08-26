@@ -286,8 +286,7 @@ bool Dispatcher::decode_osc(const unsigned char* data, size_t size,
         tail = head;
         i = 0;
         while (tail[i] != '\0' && ++i < remain);
-        m.argv[j].data.s = (char*)calloc(1, i + 1);
-        memcpy(m.argv[j].data.s, head, i);
+        m.argv[j].data.s = strndup((char*)head, i);
         m.argv[j].size = i;
         i += 4 - i % 4;
         head += i;
