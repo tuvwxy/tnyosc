@@ -61,17 +61,10 @@ struct Argument {
     } m;        // MIDI data
   } data;
 
-  ~Argument() {
-    switch(type) {
-      case 's':
-      case 'S':
-        free(data.s);
-        break;
-      case'b':
-        free(data.b);
-        break;
-    }
-  }
+  Argument();
+  Argument(const Argument& a) ;
+  virtual ~Argument();
+  Argument& operator=(const Argument& a);
 };
 
 typedef void (*osc_method)(const std::string& address, 

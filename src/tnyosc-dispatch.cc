@@ -36,6 +36,69 @@ bool compare_callback_timetag(const CallbackRef first, const CallbackRef second)
   }
 }
 
+Argument::Argument() 
+{
+  type = 0;
+  size = 0;
+  memset(&data, 0, sizeof(data));
+}
+
+Argument::Argument(const Argument& a) 
+{
+  type = a.type;
+  size = a.size;
+  switch(type) {
+    case 's':
+    case 'S':
+      data.s = strndup(a.data.s, a.size);
+      break;
+    case'b':
+      data.b = malloc(sizeof(size));
+      memcpy(data.b, a.data.b, size);
+      break;
+    default:
+      data = a.data;
+      break;
+  }
+}
+
+Argument::~Argument() 
+{
+  switch(type) {
+    case 's':
+    case 'S':
+    case'b':
+      free(data.s);
+  }
+}
+
+Argument& Argument::operator=(const Argument& a) 
+{
+  if (this == &a) return *this;
+  switch (type) {
+    case 's':
+    case 'S':
+    case 'b':
+      free(data.s);
+  }
+
+  type = a.type;
+  size = a.size;
+  switch(type) {
+    case 's':
+    case 'S':
+      data.s = strndup(a.data.s, a.size);
+      break;
+    case'b':
+      data.b = malloc(sizeof(size));
+      memcpy(data.b, a.data.b, size);
+      break;
+    default:
+      data = a.data;
+  }
+  return *this;
+}
+
 Dispatcher::Dispatcher() 
   : methods_(0)
 {
