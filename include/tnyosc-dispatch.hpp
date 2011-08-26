@@ -120,14 +120,16 @@ class Dispatcher {
   /// tempaltes.
   std::list<CallbackRef> match_methods(const unsigned char* data, size_t size);
 
+  /// decode_data is called inside match_methods to extract the OSC data from
+  /// a raw data.
+  static bool decode_data(const unsigned char* data, size_t size, 
+      std::list<ParsedMessage>& messages, struct timeval timetag=kZeroTimetag);
+
  private:
   static const struct timeval kZeroTimetag;
-
-  bool decode_data(const unsigned char* data, size_t size, 
-      std::list<ParsedMessage>& messages, struct timeval timetag=kZeroTimetag);
-  bool decode_osc(const unsigned char* data, size_t size, 
+  static bool decode_osc(const unsigned char* data, size_t size, 
       std::list<ParsedMessage>& messages, struct timeval timetag);
-  bool pattern_match(const std::string& lhs, const std::string& rhs);
+  static bool pattern_match(const std::string& lhs, const std::string& rhs);
 
   std::list<MethodTemplate> methods_;
 };
