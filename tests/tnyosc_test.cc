@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <assert.h>
 
-void print_bytes(const unsigned char* bytes, size_t size)
+void print_bytes(const char* bytes, size_t size)
 {
   size_t i;
 	for (i = 0; i < size; ++i) {

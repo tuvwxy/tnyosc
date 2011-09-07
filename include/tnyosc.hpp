@@ -35,13 +35,20 @@
 #ifndef __TNY_OSC__
 #define __TNY_OSC__
 
+#if defined(_WIN32)
+#include <time.h>
+#include <Windows.h>
+#if defined(_MSC_VER) || defined(_MSC_EXTENSIONS)
+  #define DELTA_EPOCH_IN_MICROSECS  11644473600000000Ui64
+#else
+  #define DELTA_EPOCH_IN_MICROSECS  11644473600000000ULL
+#endif
+#else
 #include <sys/time.h> // gettimeofday
 #include <arpa/inet.h> // htonl
+#endif
 #include <cstddef> // size_t
 #include <string>
-#ifdef _WIN32
-  #include <wstring>
-#endif
 #include <vector>
 #include <algorithm>
 #include <iostream>
@@ -84,7 +91,6 @@
 #define htonll(x) ntohll(x)
 #endif
 
-
 namespace tnyosc {
 
 /// Convert 32-bit float to a big-endian network format
@@ -97,13 +103,13 @@ inline double ntohf(int32_t x) { x = ntohl(x); return *(float*)&x; }
 inline double ntohd(int64_t x) { return (double)ntohll(x); }
 
 /// A byte array type internally used in the tnyosc library.
-typedef std::vector<unsigned char> ByteArray;
+typedef std::vector<char> ByteArray;
 
 /// Returns a pointer to the buffer for the array.
 ///
 /// @param[in] array An array as type ByteArray.
-/// @return A pointer to the buffer as unsigned char*.
-inline const unsigned char* get_pointer(const ByteArray& array)
+/// @return A pointer to the buffer as char*.
+inline const char* get_pointer(const ByteArray& array)
 {
   if (array.size() > 0) {
     return &array[0];
@@ -342,10 +348,10 @@ class Message {
     if (is_cached_) return cache_;
     else return create_cache(); }
 
-  /// Returns a complete byte array of this OSC message as a unsigned char
+  /// Returns a complete byte array of this OSC message as a char
   /// pointer. This call is convenient for actually sending this OSC messager.
   ///
-  /// @return The OSC message as an unsigned char*.
+  /// @return The OSC message as an char*.
   /// @see byte_array
   /// @see size
   ///
@@ -355,7 +361,7 @@ class Message {
   ///   send_to(sockfd, msg->data(), msg->size(), 0);
   /// </pre>
   ///
-  const unsigned char* data() const { return get_pointer(byte_array()); }
+  const char* data() const { return get_pointer(byte_array()); }
 
   /// Returns the size of this OSC message.
   ///
@@ -455,7 +461,7 @@ class Bundle {
   /// Returns a pointer to the byte array of this OSC bundle. This call is
   /// convenient for actually sending this OSC bundle.
   ///
-  /// @return The OSC bundle as an unsigned char*.
+  /// @return The OSC bundle as an char*.
   /// @see byte_array
   /// @see size
   ///
@@ -465,7 +471,7 @@ class Bundle {
   ///   send_to(sockfd, bundle->data(), bundle->size(), 0);
   /// </pre>
   ///
-  const unsigned char* data() const { return get_pointer(data_); }
+  const char* data() const { return get_pointer(data_); }
 
   /// Returns the size of this OSC bundle.
   ///
