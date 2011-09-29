@@ -1,11 +1,10 @@
 
 #include "tnyosc.hpp"
+#include <iostream>
 #include <boost/asio.hpp>
 
-#define HOST ("127.0.0.1")
-#define PORT ("7400")
-
 using boost::asio::ip::udp;
+using boost::asio::ip::tcp;
 
 tnyosc::Message::Ptr create_osc_message()
 {
@@ -29,13 +28,21 @@ tnyosc::Message::Ptr create_osc_message()
 
 int main(int argc, const char* argv[])
 {
+  if (argc != 3) {
+    std::cout << argv[0] << " HOST PORT\n";
+    return -1;
+  }
+
   try {
     // boost::asio library for sending UDP packets
     boost::asio::io_service io_service;
-    udp::socket socket(io_service, udp::endpoint(udp::v4(), 0));
-    udp::resolver resolver(io_service);
-    udp::resolver::query query(udp::v4(), HOST, PORT);
-    udp::resolver::iterator iterator = resolver.resolve(query);
+
+    tcp::resolver resolver(io_service);
+    tcp::resolver::query query(tcp::v4(), argv[1], argv[2]);
+    tcp::resolver::iterator iterator = resolver.resolve(query);
+
+    tcp::socket socket(io_service, tcp::endpoint(tcp::v4(), 0));
+    socket.connect(*iterator);
 
     // create a OSC message
     tnyosc::Message::Ptr msg = create_osc_message();
@@ -51,7 +58,9 @@ int main(int argc, const char* argv[])
     bundle->append(bundle);
 
     // send the message over UDP
-    socket.send_to(boost::asio::buffer(bundle->data(), bundle->size()), *iterator);
+    int32_t send_size = htonl(bundle->size());
+    boost::asio::write(socket, boost::asio::buffer(&send_size, 4));
+    boost::asio::write(socket, boost::asio::buffer(bundle->data(), bundle->size()));
   } catch (std::exception& e) {
     std::cerr << "Excetion: " << e.what() << std::endl;
     return 1;
