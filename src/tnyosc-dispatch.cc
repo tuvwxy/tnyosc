@@ -10,7 +10,7 @@
 
 using namespace tnyosc;
 
-void print_bytes(const unsigned char* bytes, size_t size)
+void print_bytes(const char* bytes, size_t size)
 {
   size_t i;
 	for (i = 0; i < size; ++i) {
@@ -119,7 +119,7 @@ void Dispatcher::add_method(const char* address, const char* types,
   methods_.push_back(m);
 }
 
-std::list<CallbackRef> Dispatcher::match_methods(const unsigned char* data, size_t size)
+std::list<CallbackRef> Dispatcher::match_methods(const char* data, size_t size)
 {
   std::list<ParsedMessage> parsed_messages;
   std::list<CallbackRef> callback_list;
@@ -171,7 +171,7 @@ struct timeval ntp_to_unixtime(uint32_t sec, uint32_t frac)
     memset(&tv, 0, sizeof(tv));
   } else {
     tv.tv_sec = sec - epoch;
-    tv.tv_usec = (double)frac * 0.0002328306437080;
+    tv.tv_usec = (suseconds_t)((double)frac * 0.0002328306437080);
   }
 
   return tv;
@@ -179,7 +179,7 @@ struct timeval ntp_to_unixtime(uint32_t sec, uint32_t frac)
 
 const struct timeval Dispatcher::kZeroTimetag = {0, 0};
 
-bool Dispatcher::decode_data(const unsigned char* data, size_t size, 
+bool Dispatcher::decode_data(const char* data, size_t size, 
     std::list<ParsedMessage>& messages, struct timeval timetag)
 {
   if (!memcmp(data, "#bundle\0", 8)) {
@@ -215,11 +215,11 @@ bool Dispatcher::decode_data(const unsigned char* data, size_t size,
   return true;
 }
 
-bool Dispatcher::decode_osc(const unsigned char* data, size_t size,
+bool Dispatcher::decode_osc(const char* data, size_t size,
     std::list<ParsedMessage>& messages, struct timeval timetag)
 {
-  const unsigned char* head;
-  const unsigned char* tail;
+  const char* head;
+  const char* tail;
   unsigned int i = 0;
   size_t remain = size;
 
