@@ -2,11 +2,17 @@
 
 ## Tiny Open Sound Control Library
 
-tnyosc is a header-only Open Sound Control library written in C++ for creating OSC-compliant messages. tnyosc supports Open Sound Control 1.0 and 1.1 types and other nonstandard types, and bundles.
+tnyosc is a tiny Open Sound Control library written in C++ for creating and parsing (or dispatching) OSC-compliant messages. tnyosc supports Open Sound Control 1.0 and 1.1 types and other nonstandard types, and bundles.
 
 This has been tested on OS X 10.6 and Linux (CentOS). It should work with any POSIX systems. Windows support is on it's way but I can't tell you when it would be out since I don't have a need for it yet. I can put more effort in it if anyone is interested though!
 
-To use the library, you just need "tnyosc.hpp" header file.
+To use the library to just create and send Open Sound Control message, you just need `tnyosc.hpp` header file.
+
+If you're interested in parsing or dispatching received OSC messages, you need both `tnyosc.hpp` and `tnyosc-dispatch.hpp` headers and `tnyosc-dispatch.cc` source files.
+
+## tnyosc Example
+
+### Creating and Sending OSC Messages
 
 Here's an example of creating a OSC message and inserting it in a bundle:
 
@@ -22,16 +28,16 @@ Here's an example of creating a OSC message and inserting it in a bundle:
     tnyosc::Bundle bundle;
     bundle.append(msg);
 
-To access the buffer as a unsigned char array and get its size:
+To access the buffer as a char array and get its size:
 
     tnyosc::Message msg;
-    unsigned char* data = msg.data();
+    char* data = msg.data();
     size_t size = msg.size();
 
 You can call the same functions for bundle:
 
     tnyosc::Bundle bundle;
-    unsigned char* data = bundle.data();
+    char* data = bundle.data();
     size_t size = bundle.size();
 
 Here's a complete example using boost::asio to send a OSC message over UDP:
@@ -63,7 +69,49 @@ Here's a complete example using boost::asio to send a OSC message over UDP:
       return 0;
     }
 
-A similar example is inside tnyosc\_net\_test.cc.
+A similar example is inside `tnyosc_net_test.cc`.
+
+### Dispatching OSC Messages
+
+`tnyosc-dispatch.hpp` and `tnyosc-dispatch.cc` include code for dispatching received OSC messages. It is designed so that it does not enforce particular threading model and user have more control over how to organize their code.
+
+Dispatching OSC message is a little more involved because OSC methods (aka callback functions) need to be registered and OSC messages need to be parsed and matched against the methods.
+
+First, we need to define a OSC method. The method has a signature:
+
+    void method(const std::string& address, 
+                const std::vector<tnyosc::Argument>& argv,
+                void* user_data);
+
+`address` is the OSC Address, which looks like a URL.
+`argv` is arguments in the OSC message.
+`user_data` is user specified pointer to a data that was set when registering the method.
+
+We can then add this method to the `Dispatcher` class with the matching signature.
+
+    Dispatcher dispatcher;
+    dispatcher.add_method("/match/address", /* match exactly with this OSC address */
+                          NULL,             /* no arguments specified */
+                          &method,          /* pointer to the OSC method */
+                          NULL);            /* no user data specified */
+
+Then, once a raw OSC message is received, it can invoke the method by
+
+    char* msg_data;
+    size_t msg_size;
+
+    // ... fill msg_data and msg_size with received raw OSC message
+
+    // Get a matched callback list
+    std::list<CallbackRef> callback_list = dispatcher.match_methods(msg_data, msg_size);
+
+    // We can iterate through the list and invoke all OSC methods
+    std::list<CallbackRef>::iterator it = callback_list.begin();
+    for (; it != callback_list.end(); ++it) {
+      (*it)->method(((*it)->address, (*it)->argv, (*it)->user_data);
+    }
+
+A full example can be found in `tnyosc-dispatch_test.cc`.
 
 ## BSD-License
 
