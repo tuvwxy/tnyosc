@@ -63,7 +63,6 @@
 #include <boost/shared_ptr.hpp>
 #endif
 
-//HACK (OS): Added _win64. not sure it works.
 #if defined(_WIN32) || defined(_WIN64)
   #if (_MSC_VER < 1300)
     typedef signed char       int8_t;
