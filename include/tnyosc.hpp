@@ -35,18 +35,24 @@
 #ifndef __TNY_OSC__
 #define __TNY_OSC__
 
-#if defined(_WIN32)
+#if defined(_WIN32) || defined(_WIN64)
+
 #include <time.h>
 #include <Windows.h>
+
 #if defined(_MSC_VER) || defined(_MSC_EXTENSIONS)
   #define DELTA_EPOCH_IN_MICROSECS  11644473600000000Ui64
 #else
   #define DELTA_EPOCH_IN_MICROSECS  11644473600000000ULL
 #endif
+
 #else
+
 #include <sys/time.h> // gettimeofday
 #include <arpa/inet.h> // htonl
+
 #endif
+
 #include <cstddef> // size_t
 #include <string>
 #include <vector>
@@ -57,7 +63,8 @@
 #include <boost/shared_ptr.hpp>
 #endif
 
-#if defined(_WIN32)
+//HACK (OS): Added _win64. not sure it works.
+#if defined(_WIN32) || defined(_WIN64)
   #if (_MSC_VER < 1300)
     typedef signed char       int8_t;
     typedef signed short      int16_t;
@@ -118,7 +125,7 @@ inline const char* get_pointer(const ByteArray& array)
   }
 }
 
-#ifdef _WIN32
+#if defined (_WIN32) || defined (_WIN64)
 // Windows doesn't have gettimeofday, so here's an equivalent version.
 // http://stackoverflow.com/questions/2494356/how-to-use-gettimeofday-or-something-equivalent-with-visual-studio-c-2008
 struct timeval {
