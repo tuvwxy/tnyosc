@@ -1,7 +1,7 @@
 
-#include "tnyosc.hpp"
-#include <iostream>
 #include <boost/asio.hpp>
+#include <iostream>
+#include "tnyosc.hpp"
 
 using boost::asio::ip::udp;
 using boost::asio::ip::tcp;
